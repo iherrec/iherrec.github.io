@@ -5,6 +5,7 @@ body {
   background-color: #eaf3ff;
   color: #0d1b2a;
   scroll-behavior: smooth;
+  padding-top: 80px; /* evita que el navbar tape el hero */
 }
 
 h1, h2 {
@@ -34,24 +35,27 @@ h1, h2 {
   background: linear-gradient(rgba(0,0,50,0.5), rgba(0,0,80,0.6)),
               url('https://imgs.search.brave.com/47Aw8WP82rKkoDECaNSIIcjcnebOLsagKJKUxWdG7V4/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly91bmJ1/ZW5kaWFlbmJhcmNl/bG9uYS5jb20vd3At/Y29udGVudC91cGxv/YWRzLzIwMjMvMDUv/c2t5YmFyX2ZvdG8x/QGpwZXNjb2Jhci5q/cGc') center/cover no-repeat;
   z-index: -1;
+  transform: translateY(var(--parallax-y, 0));
+  transition: transform 0.12s linear;
 }
 
 /* === NAVBAR === */
 .navbar {
-    display: flex;
+  display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 1rem 2rem;
   background: rgba(0, 0, 40, 0.7);
-  position: fixed; /* <- cambia 'sticky' por 'fixed' */
+  position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   z-index: 10;
   backdrop-filter: blur(4px);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
 }
 
-.logo {
+.navbar .logo {
   font-size: 1.8rem;
   font-weight: 700;
   color: #9ad1ff;
@@ -110,6 +114,13 @@ h1, h2 {
 .section {
   padding: 4rem 2rem;
   text-align: center;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* Evita que los elementos anclados queden ocultos bajo el navbar fijo */
+.section {
+  scroll-margin-top: 80px; /* ajusta según la altura real del navbar */
 }
 
 /* === SERVICIOS === */
@@ -132,6 +143,57 @@ h1, h2 {
   width: 280px;
   text-align: center;
   transition: transform 0.3s;
+}
+
+/* Make cards positioned containers for overlays */
+.servicio-card, .coctel-card {
+  position: relative;
+  overflow: hidden;
+}
+
+/* Overlay that appears on hover with more information */
+.card-overlay {
+  position: absolute;
+  inset: 0; /* top:0; right:0; bottom:0; left:0 */
+  background: linear-gradient(180deg, rgba(13,27,42,0.9), rgba(13,27,42,0.85));
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  text-align: center;
+  opacity: 0;
+  transform: translateY(8px);
+  transition: opacity 280ms ease, transform 280ms ease;
+  pointer-events: none;
+}
+
+.card-overlay .overlay-inner {
+  max-height: 85%;
+  overflow: auto;
+}
+
+/* Ensure overlay text is white and readable (override card p rules) */
+.card-overlay,
+.card-overlay h4,
+.card-overlay p,
+.card-overlay a,
+.card-overlay strong {
+  color: #ffffff;
+  text-shadow: 0 1px 2px rgba(0,0,0,0.6);
+}
+
+/* Stronger rule for servicio overlays to ensure legibility over dark background */
+.servicio-card .card-overlay,
+.servicio-card .card-overlay * {
+  color: #ffffff !important;
+}
+
+.servicio-card:hover .card-overlay,
+.coctel-card:hover .card-overlay {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
 }
 
 .servicio-card:hover {
@@ -161,10 +223,9 @@ h1, h2 {
 }
 
 .coctel-grid {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 2rem;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* dos filas x 3 columnas */
+  gap: 1.75rem;
   margin-top: 2rem;
 }
 
@@ -172,8 +233,8 @@ h1, h2 {
   background-color: white;
   border-radius: 12px;
   box-shadow: 0 4px 15px rgba(0, 0, 50, 0.1);
-  width: 280px;
-  padding: 1.5rem;
+  width: 100%;
+  padding: 1.25rem;
   text-align: left;
   transition: transform 0.3s;
 }
@@ -186,40 +247,31 @@ h1, h2 {
   width: 100%;
   border-radius: 8px;
   margin-bottom: 1rem;
+  height: 160px; /* altura fija para uniformidad */
+  object-fit: cover; /* recorta la imagen manteniendo proporción */
+}
+
+/* Reveal on scroll / hover animations */
+.reveal {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 600ms cubic-bezier(.2,.9,.2,1), transform 600ms cubic-bezier(.2,.9,.2,1);
+  will-change: opacity, transform;
+}
+
+.reveal.in-view {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.coctel-card:hover, .servicio-card:hover {
+  transform: translateY(-6px) scale(1.02);
+  box-shadow: 0 10px 30px rgba(0,0,50,0.15);
 }
 
 .coctel-card h3 {
   color: #004080;
   margin-bottom: 0.5rem;
-}
-
-.coctel-card ul {
-  padding-left: 1.2rem;
-}
-#cocteles {
-  background: linear-gradient(180deg, #d6ebff 0%, #eaf3ff 100%);
-}
-
-.cocteles-header-image {
-  width: 100%;
-  text-align: center;
-  margin-bottom: 2rem;
-}
-
-.cocteles-header-image img {
-  max-width: 100%;
-  height: auto;
-  border-radius: 12px;
-  box-shadow: 0 4px 10px rgba(0, 0, 50, 0.2);
-}
-
-.coctel-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 1.8rem;
-  justify-items: center;
-  margin-top: 2rem;
-  margin-bottom: 3rem;
 }
 
 /* === FORMULARIO === */
@@ -229,6 +281,109 @@ form {
   gap: 1rem;
   max-width: 400px;
   margin: 0 auto;
+}
+
+/* Footer extras: horarios, teléfono y sociales */
+.footer-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.hours {
+  color: #cfe9ff;
+  text-align: left;
+  min-width: 200px;
+}
+
+.phone {
+  font-weight: 700;
+  color: #9ad1ff;
+}
+
+.social-icons {
+  display: flex;
+  gap: 0.75rem;
+  align-items: center;
+}
+
+.social-icons a {
+  display: inline-flex;
+  width: 36px;
+  height: 36px;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255,255,255,0.06);
+  border-radius: 8px;
+  color: white;
+  transition: transform 0.18s ease, background 0.18s;
+}
+
+.social-icons a:hover { transform: translateY(-3px); background: rgba(255,255,255,0.12); }
+
+/* Chat button */
+.chat-btn {
+  position: fixed;
+  right: 20px;
+  bottom: 20px;
+  z-index: 100;
+  width: 56px;
+  height: 56px;
+  background: linear-gradient(135deg,#0077cc,#00a0ff);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.25);
+  cursor: pointer;
+}
+
+.chat-panel {
+  position: fixed;
+  right: 88px;
+  bottom: 28px;
+  width: 300px;
+  max-width: calc(100% - 120px);
+  background: white;
+  color: #0d1b2a;
+  border-radius: 12px;
+  box-shadow: 0 12px 40px rgba(0,0,0,0.25);
+  padding: 0.75rem;
+  display: none; /* decorativo por ahora */
+  flex-direction: column;
+}
+
+.chat-panel.open { display: flex; }
+
+/* Hero background animation (subtle lights/brisa) */
+.hero::before {
+  will-change: transform, background-position;
+}
+
+.hero::after {
+  /* capa de 'luces' sutiles para parpadeo */
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(ellipse at 20% 10%, rgba(255,255,255,0.03), transparent 10%),
+              radial-gradient(ellipse at 80% 80%, rgba(255,255,255,0.02), transparent 12%);
+  opacity: 0.8;
+  pointer-events: none;
+  z-index: 0;
+  mix-blend-mode: screen;
+  animation: lights 6s infinite ease-in-out;
+}
+
+@keyframes lights {
+  0% { opacity: 0.6; transform: scale(1); }
+  50% { opacity: 0.9; transform: scale(1.02); }
+  100% { opacity: 0.6; transform: scale(1); }
 }
 
 input, textarea {
@@ -264,3 +419,35 @@ footer a {
   color: #7ec8ff;
   text-decoration: none;
 }
+
+/* FAQ details styling */
+.faq-list {
+  margin-top: 1.5rem;
+  display: grid;
+  gap: 0.75rem;
+  max-width: 900px;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: left;
+}
+
+.faq-list details {
+  background: white;
+  border-radius: 10px;
+  padding: 0.75rem 1rem;
+  box-shadow: 0 6px 18px rgba(0,0,50,0.06);
+}
+
+.faq-list summary {
+  cursor: pointer;
+  font-weight: 600;
+  outline: none;
+}
+
+.faq-list summary::marker { color: #0077cc; }
+
+.faq-list details[open] {
+  background: #f7fbff;
+}
+
+.faq-list p { margin: 0.5rem 0 0; color: #0d1b2a; }
