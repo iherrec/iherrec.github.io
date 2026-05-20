@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Alejandro The Barber - Barbería profesional en Madrid. Cortes modernos y clásicos con estilo premium.">
+  <title>Alejandro The Barber</title>
+
+  <!-- Google Fonts: Playfair Display para títulos elegantes, Raleway para el resto -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Raleway:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+  <!-- Font Awesome: librería de iconos gratuita -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+  <!-- Nuestro archivo CSS -->
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- ============================================================
+       NAVBAR - Barra de navegación fija en la parte superior
+       ============================================================ -->
+  <header class="navbar" id="navbar">
+    <nav class="nav-container">
+
+      <!-- Logo con icono de tijeras -->
+      <a href="#inicio" class="logo">
+        <span class="logo-icon">✂</span>
+        <span class="logo-texto">Alejandro <span class="logo-acento">The Barber</span></span>
+      </a>
+
+      <!-- Menú de navegación principal (oculto en móvil) -->
+      <ul class="nav-links" id="nav-links">
+        <li><a href="#inicio"   class="nav-link">Inicio</a></li>
+        <li><a href="#servicios" class="nav-link">Servicios</a></li>
+        <li><a href="#galeria"  class="nav-link">Galería</a></li>
+        <li><a href="#reserva"  class="nav-link">Reserva</a></li>
+        <li><a href="#reserva"  class="nav-link nav-cta">Pedir Cita</a></li>
+      </ul>
+
+      <!-- Botón hamburguesa: solo visible en móvil, controlado por JS -->
+      <button class="hamburger" id="hamburger" aria-label="Abrir menú">
+        <span class="barra"></span>
+        <span class="barra"></span>
+        <span class="barra"></span>
+      </button>
+
+    </nav>
+  </header>
+
+
+  <!-- ============================================================
+       HERO - Sección principal de bienvenida (pantalla completa)
+       ============================================================ -->
+  <section id="inicio" class="hero">
+
+    <!-- Capa oscura semitransparente encima de la imagen de fondo -->
+    <div class="hero-overlay"></div>
+
+    <!-- Contenido central del hero -->
+    <div class="hero-contenido">
+      <p class="hero-subtitulo">Bienvenido a</p>
+      <h1 class="hero-titulo">
+        Alejandro<br>
+        <span class="hero-acento">The Barber</span>
+      </h1>
+      <p class="hero-descripcion">El arte del buen corte. Estilo, precisión y clase en cada visita.</p>
+      <div class="hero-botones">
+        <a href="#reserva"   class="btn btn-primario">Reservar Cita</a>
+        <a href="#servicios" class="btn btn-secundario">Ver Servicios</a>
+      </div>
+    </div>
+
+    <!-- Flecha animada que invita a hacer scroll hacia abajo -->
+    <a href="#servicios" class="hero-scroll" aria-label="Ir a servicios">
+      <i class="fas fa-chevron-down"></i>
+    </a>
+
+  </section>
+
+
+  <!-- ============================================================
+       SERVICIOS - Tarjetas con los servicios y precios
+       ============================================================ -->
+  <section id="servicios" class="servicios">
+    <div class="contenedor">
+
+      <!-- Título de la sección -->
+      <div class="seccion-titulo">
+        <p class="seccion-subtitulo">Lo que ofrecemos</p>
+        <h2>Nuestros Servicios</h2>
+        <div class="separador"></div>
+      </div>
+
+      <!-- Grid de tarjetas de servicio -->
+      <div class="servicios-grid">
+
+        <!-- Tarjeta 1: Corte Clásico -->
+        <article class="servicio-card">
+          <div class="servicio-icono">
+            <i class="fas fa-scissors"></i>
+          </div>
+          <h3>Corte Clásico</h3>
+          <p>Corte tradicional con tijera y máquina. Acabado perfecto y natural.</p>
+          <div class="servicio-precio">
+            <span class="precio">12€</span>
+            <span class="duracion">~30 min</span>
+          </div>
+        </article>
+
+        <!-- Tarjeta 2: Corte + Barba (destacada) -->
+        <article class="servicio-card destacado">
+          <div class="badge">Más Popular</div>
+          <div class="servicio-icono">
+            <i class="fas fa-star"></i>
+          </div>
+          <h3>Corte + Barba</h3>
+          <p>El pack completo. Corte a medida más perfilado y arreglo de barba.</p>
+          <div class="servicio-precio">
+            <span class="precio">22€</span>
+            <span class="duracion">~60 min</span>
+          </div>
+        </article>
+
+        <!-- Tarjeta 3: Arreglo de Barba -->
+        <article class="servicio-card">
+          <div class="servicio-icono">
+            <i class="fas fa-fire"></i>
+          </div>
+          <h3>Arreglo de Barba</h3>
+          <p>Perfilado, igualado y acabado con toalla caliente y aceite hidratante.</p>
+          <div class="servicio-precio">
+            <span class="precio">10€</span>
+            <span class="duracion">~20 min</span>
+          </div>
+        </article>
+
+        <!-- Tarjeta 4: Corte Niño -->
+        <article class="servicio-card">
+          <div class="servicio-icono">
+            <i class="fas fa-child"></i>
+          </div>
+          <h3>Corte Niño</h3>
+          <p>Para los más pequeños, hasta 12 años. Corte suave, rápido y divertido.</p>
+          <div class="servicio-precio">
+            <span class="precio">8€</span>
+            <span class="duracion">~20 min</span>
+          </div>
+        </article>
+
+        <!-- Tarjeta 5: Tratamiento Capilar -->
+        <article class="servicio-card">
+          <div class="servicio-icono">
+            <i class="fas fa-leaf"></i>
+          </div>
+          <h3>Tratamiento Capilar</h3>
+          <p>Mascarilla nutritiva y masaje capilar para un cabello sano y brillante.</p>
+          <div class="servicio-precio">
+            <span class="precio">18€</span>
+            <span class="duracion">~45 min</span>
+          </div>
+        </article>
+
+        <!-- Tarjeta 6: Look Premium -->
+        <article class="servicio-card">
+          <div class="servicio-icono">
+            <i class="fas fa-gem"></i>
+          </div>
+          <h3>Look Premium</h3>
+          <p>Experiencia completa: corte, barba, tratamiento capilar y masaje.</p>
+          <div class="servicio-precio">
+            <span class="precio">35€</span>
+            <span class="duracion">~90 min</span>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ============================================================
+       GALERÍA - Imágenes de nuestros trabajos
+       ============================================================ -->
+  <section id="galeria" class="galeria">
+    <div class="contenedor">
+
+      <div class="seccion-titulo">
+        <p class="seccion-subtitulo">Nuestro trabajo</p>
+        <h2>Galería</h2>
+        <div class="separador"></div>
+      </div>
+
+      <!-- Grid de imágenes con efecto hover -->
+      <!-- Puedes reemplazar las URLs por imágenes locales en /img/ -->
+      <div class="galeria-grid">
+
+        <div class="galeria-item">
+          <img src="https://images.unsplash.com/photo-1503951914875-452162b0f3f1?auto=format&fit=crop&w=600&q=80"
+               alt="Corte moderno fade" loading="lazy">
+          <div class="galeria-overlay"><p>Fade Moderno</p></div>
+        </div>
+
+        <div class="galeria-item">
+          <img src="https://images.unsplash.com/photo-1599351431202-1e0f0137899a?auto=format&fit=crop&w=600&q=80"
+               alt="Corte con barba" loading="lazy">
+          <div class="galeria-overlay"><p>Corte + Barba</p></div>
+        </div>
+
+        <div class="galeria-item">
+          <img src="https://images.unsplash.com/photo-1622286342621-4bd786c2447c?auto=format&fit=crop&w=600&q=80"
+               alt="Interior de barbería" loading="lazy">
+          <div class="galeria-overlay"><p>Nuestro Local</p></div>
+        </div>
+
+        <div class="galeria-item">
+          <img src="https://images.unsplash.com/photo-1562322140-8baeececf3df?auto=format&fit=crop&w=600&q=80"
+               alt="Barbero trabajando" loading="lazy">
+          <div class="galeria-overlay"><p>Maestría y Detalle</p></div>
+        </div>
+
+        <div class="galeria-item">
+          <img src="https://images.unsplash.com/photo-1605497788044-5a32c7078486?auto=format&fit=crop&w=600&q=80"
+               alt="Corte clásico" loading="lazy">
+          <div class="galeria-overlay"><p>Estilo Clásico</p></div>
+        </div>
+
+        <div class="galeria-item">
+          <img src="https://images.unsplash.com/photo-1521490683712-35a1cb235d1c?auto=format&fit=crop&w=600&q=80"
+               alt="Herramientas de barbería" loading="lazy">
+          <div class="galeria-overlay"><p>Herramientas Pro</p></div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ============================================================
+       RESERVA - Formulario de contacto/reserva de cita
+       ============================================================ -->
+  <section id="reserva" class="reserva">
+    <div class="contenedor">
+
+      <div class="reserva-wrapper">
+
+        <!-- Columna izquierda: información de contacto -->
+        <div class="reserva-info">
+          <p class="seccion-subtitulo">¿Hablamos?</p>
+          <h2>Reserva tu Cita</h2>
+          <div class="separador" style="margin: 15px 0 25px;"></div>
+          <p class="reserva-texto">
+            Rellena el formulario y te contactaremos para confirmar la cita.
+            También puedes llamarnos directamente.
+          </p>
+
+          <ul class="contacto-lista">
+            <li>
+              <div class="contacto-icono"><i class="fas fa-phone"></i></div>
+              <div>
+                <strong>Teléfono</strong>
+                <span>+34 612 345 678</span>
+              </div>
+            </li>
+            <li>
+              <div class="contacto-icono"><i class="fas fa-map-marker-alt"></i></div>
+              <div>
+                <strong>Dirección</strong>
+                <span>Calle Mayor 12, Madrid</span>
+              </div>
+            </li>
+            <li>
+              <div class="contacto-icono"><i class="fas fa-clock"></i></div>
+              <div>
+                <strong>Horario</strong>
+                <span>Lun–Vie: 9:00–20:00 | Sáb: 9:00–15:00</span>
+              </div>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Columna derecha: formulario -->
+        <div class="reserva-formulario">
+
+          <!-- Formulario (novalidate = usamos nuestra propia validación en JS) -->
+          <form id="formulario-reserva" novalidate>
+
+            <div class="campo-grupo">
+              <div class="campo">
+                <label for="nombre">Nombre completo *</label>
+                <input type="text" id="nombre" name="nombre" placeholder="Tu nombre completo" required>
+                <span class="error-msg" id="error-nombre"></span>
+              </div>
+              <div class="campo">
+                <label for="telefono">Teléfono *</label>
+                <input type="tel" id="telefono" name="telefono" placeholder="612 345 678" required>
+                <span class="error-msg" id="error-telefono"></span>
+              </div>
+            </div>
+
+            <div class="campo">
+              <label for="email">Email (opcional)</label>
+              <input type="email" id="email" name="email" placeholder="tu@email.com">
+              <span class="error-msg" id="error-email"></span>
+            </div>
+
+            <div class="campo-grupo">
+              <div class="campo">
+                <label for="servicio">Servicio *</label>
+                <select id="servicio" name="servicio" required>
+                  <option value="">-- Elige un servicio --</option>
+                  <option value="corte">Corte Clásico — 12€</option>
+                  <option value="corte-barba">Corte + Barba — 22€</option>
+                  <option value="barba">Arreglo de Barba — 10€</option>
+                  <option value="nino">Corte Niño — 8€</option>
+                  <option value="tratamiento">Tratamiento Capilar — 18€</option>
+                  <option value="premium">Look Premium — 35€</option>
+                </select>
+                <span class="error-msg" id="error-servicio"></span>
+              </div>
+              <div class="campo">
+                <label for="fecha">Fecha preferida *</label>
+                <input type="date" id="fecha" name="fecha" required>
+                <span class="error-msg" id="error-fecha"></span>
+              </div>
+            </div>
+
+            <div class="campo">
+              <label for="mensaje">Comentarios (opcional)</label>
+              <textarea id="mensaje" name="mensaje" rows="4"
+                        placeholder="¿Algo que quieras comentar sobre el servicio?"></textarea>
+            </div>
+
+            <button type="submit" class="btn btn-primario btn-formulario">
+              <i class="fas fa-calendar-check"></i> Solicitar Cita
+            </button>
+
+          </form>
+
+          <!-- Mensaje de éxito: oculto por defecto, se muestra tras enviar -->
+          <div class="exito-mensaje" id="exito-mensaje">
+            <i class="fas fa-check-circle"></i>
+            <h3>¡Solicitud enviada!</h3>
+            <p>Te contactaremos en breve para confirmar tu cita. ¡Hasta pronto!</p>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ============================================================
+       FOOTER - Pie de página con info, horarios y redes sociales
+       ============================================================ -->
+  <footer id="contacto" class="footer">
+    <div class="contenedor">
+
+      <div class="footer-grid">
+
+        <!-- Columna 1: Logo, descripción y redes sociales -->
+        <div class="footer-col">
+          <a href="#inicio" class="logo logo-footer">
+            <span class="logo-icon">✂</span>
+            <span class="logo-texto">Alejandro <span class="logo-acento">The Barber</span></span>
+          </a>
+          <p class="footer-descripcion">
+            Tu barbería de confianza en Madrid desde 2018. El arte del buen corte,
+            con estilo y precisión en cada visita.
+          </p>
+          <!-- Iconos de redes sociales -->
+          <div class="redes-sociales">
+            <a href="#" class="red-social" aria-label="Instagram">
+              <i class="fab fa-instagram"></i>
+            </a>
+            <a href="#" class="red-social" aria-label="Facebook">
+              <i class="fab fa-facebook-f"></i>
+            </a>
+            <a href="#" class="red-social" aria-label="TikTok">
+              <i class="fab fa-tiktok"></i>
+            </a>
+            <a href="#" class="red-social" aria-label="WhatsApp">
+              <i class="fab fa-whatsapp"></i>
+            </a>
+          </div>
+        </div>
+
+        <!-- Columna 2: Horarios -->
+        <div class="footer-col">
+          <h4 class="footer-titulo">Horarios</h4>
+          <ul class="horarios-lista">
+            <li>
+              <span>Lunes – Viernes</span>
+              <span>9:00 – 20:00</span>
+            </li>
+            <li>
+              <span>Sábado</span>
+              <span>9:00 – 15:00</span>
+            </li>
+            <li class="cerrado">
+              <span>Domingo</span>
+              <span>Cerrado</span>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Columna 3: Información de contacto -->
+        <div class="footer-col">
+          <h4 class="footer-titulo">Contacto</h4>
+          <ul class="footer-contacto">
+            <li><i class="fas fa-phone"></i> +34 612 345 678</li>
+            <li><i class="fas fa-envelope"></i> info@alejandrothebarber.es</li>
+            <li><i class="fas fa-map-marker-alt"></i> Calle Mayor 12, Madrid</li>
+          </ul>
+        </div>
+
+        <!-- Columna 4: Navegación rápida -->
+        <div class="footer-col">
+          <h4 class="footer-titulo">Navegación</h4>
+          <ul class="footer-links">
+            <li><a href="#inicio">Inicio</a></li>
+            <li><a href="#servicios">Servicios</a></li>
+            <li><a href="#galeria">Galería</a></li>
+            <li><a href="#reserva">Reservar cita</a></li>
+          </ul>
+        </div>
+
+      </div>
+
+      <!-- Barra inferior con copyright -->
+      <div class="footer-bottom">
+        <p>&copy; 2024 Alejandro The Barber. Todos los derechos reservados.</p>
+        <p>Proyecto DAW — 1º Curso</p>
+      </div>
+
+    </div>
+  </footer>
+
+
+  <!-- JavaScript al final del body: así el HTML carga antes que el script -->
+  <script src="js/app.js"></script>
+
+</body>
+</html>

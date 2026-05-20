@@ -1,0 +1,1017 @@
+/* ============================================================
+   style.css — Alejandro The Barber
+   Proyecto 1º DAW
+   ============================================================
+   Índice:
+   1.  Variables CSS (colores y fuentes)
+   2.  Reset básico
+   3.  Utilidades generales (contenedor, botones, títulos)
+   4.  Navbar
+   5.  Hero
+   6.  Servicios
+   7.  Galería
+   8.  Reserva / Formulario
+   9.  Footer
+   10. Animaciones
+   11. Responsive (media queries)
+   ============================================================ */
+
+
+/* ============================================================
+   1. VARIABLES CSS
+   Con :root definimos variables globales que podemos reutilizar
+   ============================================================ */
+:root {
+  /* Colores principales */
+  --negro:       #0a0a0a;
+  --negro-suave: #1a1a1a;
+  --rojo:        #C8102E;
+  --rojo-oscuro: #a00d24;
+  --blanco:      #ffffff;
+  --gris-claro:  #f5f5f5;
+  --gris-medio:  #888888;
+
+  /* Tipografía */
+  --fuente-titulo: 'Playfair Display', serif;
+  --fuente-texto:  'Raleway', sans-serif;
+
+  /* Efectos */
+  --sombra:       0 4px 20px rgba(0, 0, 0, 0.12);
+  --sombra-fuerte: 0 8px 40px rgba(0, 0, 0, 0.25);
+  --transicion:   all 0.3s ease;
+  --radio:        8px;
+}
+
+
+/* ============================================================
+   2. RESET BÁSICO
+   Eliminamos márgenes y paddings por defecto del navegador
+   ============================================================ */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box; /* el padding no suma al ancho total */
+}
+
+html {
+  scroll-behavior: smooth; /* desplazamiento suave al hacer clic en anclas */
+}
+
+body {
+  font-family: var(--fuente-texto);
+  background-color: var(--blanco);
+  color: var(--negro-suave);
+  line-height: 1.6;
+  overflow-x: hidden; /* evitar scroll horizontal no deseado */
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+ul {
+  list-style: none;
+}
+
+
+/* ============================================================
+   3. UTILIDADES GENERALES
+   ============================================================ */
+
+/* Contenedor centrado con ancho máximo */
+.contenedor {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+/* --- Botones --- */
+.btn {
+  display: inline-block;
+  padding: 14px 32px;
+  border-radius: var(--radio);
+  font-family: var(--fuente-texto);
+  font-weight: 600;
+  font-size: 0.9rem;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  border: 2px solid transparent;
+  cursor: pointer;
+  transition: var(--transicion);
+}
+
+.btn-primario {
+  background-color: var(--rojo);
+  color: var(--blanco);
+  border-color: var(--rojo);
+}
+
+.btn-primario:hover {
+  background-color: var(--rojo-oscuro);
+  border-color: var(--rojo-oscuro);
+  transform: translateY(-3px);
+  box-shadow: 0 6px 20px rgba(200, 16, 46, 0.45);
+}
+
+.btn-secundario {
+  background-color: transparent;
+  color: var(--blanco);
+  border-color: var(--blanco);
+}
+
+.btn-secundario:hover {
+  background-color: var(--blanco);
+  color: var(--negro);
+  transform: translateY(-3px);
+}
+
+/* --- Títulos de sección --- */
+.seccion-titulo {
+  text-align: center;
+  margin-bottom: 60px;
+}
+
+.seccion-titulo h2 {
+  font-family: var(--fuente-titulo);
+  font-size: 2.5rem;
+  color: var(--negro-suave);
+  margin-bottom: 15px;
+}
+
+/* Texto pequeño rojo encima del título */
+.seccion-subtitulo {
+  display: block;
+  color: var(--rojo);
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  margin-bottom: 10px;
+}
+
+/* Línea roja decorativa debajo del título */
+.separador {
+  width: 55px;
+  height: 3px;
+  background-color: var(--rojo);
+  margin: 0 auto;
+  border-radius: 2px;
+}
+
+
+/* ============================================================
+   4. NAVBAR
+   Barra de navegación fija en la parte superior
+   ============================================================ */
+.navbar {
+  position: fixed; /* queda fija aunque hagamos scroll */
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;   /* por encima de todo lo demás */
+  padding: 20px 0;
+  transition: var(--transicion);
+  /* Al principio es transparente para que se vea el hero */
+}
+
+/* Clase que añade JS cuando el usuario hace scroll hacia abajo */
+.navbar.scrolled {
+  background-color: var(--negro);
+  padding: 12px 0;
+  box-shadow: var(--sombra);
+}
+
+.nav-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+  display: flex;
+  justify-content: space-between; /* logo a la izq, links a la der */
+  align-items: center;
+}
+
+/* Logo */
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--blanco);
+  font-family: var(--fuente-titulo);
+  font-size: 1.25rem;
+  font-weight: 700;
+}
+
+.logo-icon {
+  font-size: 1.6rem;
+  color: var(--rojo);
+}
+
+.logo-acento {
+  color: var(--rojo);
+}
+
+/* Lista de enlaces del menú */
+.nav-links {
+  display: flex;
+  gap: 30px;
+  align-items: center;
+}
+
+.nav-link {
+  color: var(--blanco);
+  font-size: 0.85rem;
+  font-weight: 500;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  position: relative;
+  transition: color 0.3s ease;
+}
+
+/* Línea roja animada que aparece debajo al hacer hover */
+.nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: -5px;
+  left: 0;
+  width: 0;           /* comienza con ancho 0 */
+  height: 2px;
+  background-color: var(--rojo);
+  transition: width 0.3s ease; /* animación de izq a der */
+}
+
+.nav-link:hover { color: var(--rojo); }
+.nav-link:hover::after,
+.nav-link.activo::after { width: 100%; }
+
+/* Botón CTA en el navbar (diferente estilo) */
+.nav-cta {
+  background-color: var(--rojo);
+  padding: 8px 20px;
+  border-radius: var(--radio);
+}
+.nav-cta::after { display: none; } /* sin línea en el botón */
+.nav-cta:hover {
+  background-color: var(--rojo-oscuro);
+  color: var(--blanco) !important;
+}
+
+/* --- Botón Hamburguesa (solo visible en móvil) --- */
+.hamburger {
+  display: none; /* oculto en escritorio */
+  flex-direction: column;
+  gap: 5px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 5px;
+  z-index: 1001;
+}
+
+.barra {
+  display: block;
+  width: 26px;
+  height: 3px;
+  background-color: var(--blanco);
+  border-radius: 3px;
+  transition: var(--transicion);
+}
+
+/* Animación del hamburguesa → X cuando está activo */
+.hamburger.activo .barra:nth-child(1) {
+  transform: translateY(8px) rotate(45deg);
+}
+.hamburger.activo .barra:nth-child(2) {
+  opacity: 0;
+}
+.hamburger.activo .barra:nth-child(3) {
+  transform: translateY(-8px) rotate(-45deg);
+}
+
+
+/* ============================================================
+   5. HERO
+   Sección de bienvenida a pantalla completa
+   ============================================================ */
+.hero {
+  position: relative;
+  min-height: 100vh;           /* ocupa toda la altura de la pantalla */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  /* Imagen de fondo desde Unsplash (puedes cambiarla por una local) */
+  background-image: url('https://images.unsplash.com/photo-1503951914875-452162b0f3f1?auto=format&fit=crop&w=1920&q=80');
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed; /* efecto parallax al hacer scroll */
+  background-color: var(--negro); /* color de respaldo si la imagen no carga */
+}
+
+/* Capa oscura semitransparente encima de la imagen */
+.hero-overlay {
+  position: absolute;
+  inset: 0; /* equivale a top:0; right:0; bottom:0; left:0 */
+  background: linear-gradient(
+    135deg,
+    rgba(0, 0, 0, 0.88) 0%,
+    rgba(160, 10, 30, 0.25) 100%
+  );
+}
+
+/* El contenido va por encima del overlay (z-index mayor) */
+.hero-contenido {
+  position: relative;
+  z-index: 1;
+  max-width: 800px;
+  padding: 20px;
+}
+
+.hero-subtitulo {
+  color: var(--rojo);
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 4px;
+  margin-bottom: 15px;
+  animation: bajarFadeIn 0.8s ease both;
+}
+
+/* clamp(mínimo, ideal, máximo): tamaño de fuente fluido según pantalla */
+.hero-titulo {
+  font-family: var(--fuente-titulo);
+  font-size: clamp(2.5rem, 8vw, 5rem);
+  color: var(--blanco);
+  line-height: 1.1;
+  margin-bottom: 20px;
+  animation: bajarFadeIn 0.8s 0.2s ease both; /* 0.2s de retraso */
+}
+
+.hero-acento { color: var(--rojo); }
+
+.hero-descripcion {
+  font-size: 1.15rem;
+  color: rgba(255, 255, 255, 0.8);
+  margin-bottom: 35px;
+  animation: bajarFadeIn 0.8s 0.4s ease both;
+}
+
+.hero-botones {
+  display: flex;
+  gap: 15px;
+  justify-content: center;
+  flex-wrap: wrap;
+  animation: bajarFadeIn 0.8s 0.6s ease both;
+}
+
+/* Flecha de scroll que rebota al fondo del hero */
+.hero-scroll {
+  position: absolute;
+  bottom: 30px;
+  left: 50%;
+  transform: translateX(-50%);
+  color: var(--blanco);
+  font-size: 1.4rem;
+  z-index: 1;
+  animation: rebotar 2s infinite;
+  opacity: 0.8;
+}
+.hero-scroll:hover { color: var(--rojo); }
+
+
+/* ============================================================
+   6. SERVICIOS
+   Grid de tarjetas con precios
+   ============================================================ */
+.servicios {
+  padding: 100px 0;
+  background-color: var(--gris-claro);
+}
+
+/* Grid automático: mínimo 290px por tarjeta */
+.servicios-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
+  gap: 28px;
+}
+
+.servicio-card {
+  background-color: var(--blanco);
+  padding: 40px 30px;
+  border-radius: 12px;
+  text-align: center;
+  box-shadow: var(--sombra);
+  transition: var(--transicion);
+  position: relative;
+  border-bottom: 4px solid transparent;
+}
+
+.servicio-card:hover {
+  transform: translateY(-8px);
+  box-shadow: var(--sombra-fuerte);
+  border-bottom-color: var(--rojo);
+}
+
+/* Tarjeta destacada: fondo oscuro */
+.servicio-card.destacado {
+  background-color: var(--negro-suave);
+  color: var(--blanco);
+  border-bottom-color: var(--rojo);
+}
+.servicio-card.destacado h3    { color: var(--blanco); }
+.servicio-card.destacado p     { color: rgba(255,255,255,0.7); }
+.servicio-card.destacado .separador-precio { border-top-color: rgba(255,255,255,0.15); }
+
+/* Etiqueta "Más Popular" */
+.badge {
+  position: absolute;
+  top: -13px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: var(--rojo);
+  color: var(--blanco);
+  padding: 4px 18px;
+  border-radius: 20px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  white-space: nowrap;
+}
+
+/* Círculo con icono */
+.servicio-icono {
+  width: 70px;
+  height: 70px;
+  background-color: rgba(200, 16, 46, 0.1);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 20px;
+}
+.servicio-icono i {
+  font-size: 1.6rem;
+  color: var(--rojo);
+}
+
+.servicio-card h3 {
+  font-family: var(--fuente-titulo);
+  font-size: 1.3rem;
+  color: var(--negro-suave);
+  margin-bottom: 12px;
+}
+
+.servicio-card p {
+  color: var(--gris-medio);
+  font-size: 0.92rem;
+  margin-bottom: 20px;
+}
+
+/* Precio y duración en la parte inferior */
+.servicio-precio {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 15px;
+  border-top: 1px solid rgba(0,0,0,0.08);
+}
+
+.precio {
+  font-family: var(--fuente-titulo);
+  font-size: 1.9rem;
+  font-weight: 700;
+  color: var(--rojo);
+}
+
+.duracion {
+  font-size: 0.85rem;
+  color: var(--gris-medio);
+}
+
+
+/* ============================================================
+   7. GALERÍA
+   Grid de imágenes con efecto zoom y overlay al hacer hover
+   ============================================================ */
+.galeria {
+  padding: 100px 0;
+  background-color: var(--negro-suave);
+}
+
+.galeria .seccion-titulo h2 { color: var(--blanco); }
+
+/* Grid de 3 columnas; la primera imagen ocupa 2 filas */
+.galeria-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(2, 260px);
+  gap: 12px;
+}
+
+.galeria-item:first-child {
+  grid-row: span 2; /* primera foto ocupa el doble de alto */
+}
+
+.galeria-item {
+  position: relative;
+  overflow: hidden;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.galeria-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.45s ease;
+}
+
+/* Zoom suave al pasar el ratón */
+.galeria-item:hover img {
+  transform: scale(1.1);
+}
+
+/* Overlay con degradado y texto, invisible hasta hover */
+.galeria-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(200, 16, 46, 0.85), transparent 60%);
+  display: flex;
+  align-items: flex-end;
+  padding: 20px;
+  opacity: 0;
+  transition: opacity 0.35s ease;
+}
+
+.galeria-item:hover .galeria-overlay { opacity: 1; }
+
+.galeria-overlay p {
+  color: var(--blanco);
+  font-weight: 600;
+  font-size: 1rem;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+
+/* ============================================================
+   8. RESERVA / FORMULARIO
+   ============================================================ */
+.reserva {
+  padding: 100px 0;
+  background-color: var(--gris-claro);
+}
+
+/* Dos columnas: info | formulario */
+.reserva-wrapper {
+  display: grid;
+  grid-template-columns: 1fr 1.6fr;
+  gap: 60px;
+  align-items: start;
+}
+
+/* --- Columna izquierda: información --- */
+.reserva-info h2 {
+  font-family: var(--fuente-titulo);
+  font-size: 2.2rem;
+  margin: 10px 0 5px;
+}
+
+.reserva-texto {
+  color: var(--gris-medio);
+  margin: 25px 0 35px;
+  font-size: 0.95rem;
+}
+
+.contacto-lista {
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+}
+
+.contacto-lista li {
+  display: flex;
+  gap: 15px;
+  align-items: flex-start;
+}
+
+.contacto-icono {
+  width: 44px;
+  height: 44px;
+  background-color: var(--rojo);
+  color: var(--blanco);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.95rem;
+  flex-shrink: 0;
+}
+
+.contacto-lista strong {
+  display: block;
+  font-size: 0.9rem;
+  color: var(--negro-suave);
+  margin-bottom: 3px;
+}
+
+.contacto-lista span {
+  color: var(--gris-medio);
+  font-size: 0.88rem;
+}
+
+/* --- Columna derecha: formulario --- */
+.reserva-formulario {
+  background-color: var(--blanco);
+  padding: 40px;
+  border-radius: 12px;
+  box-shadow: var(--sombra);
+}
+
+/* Dos campos en la misma fila */
+.campo-grupo {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+.campo {
+  margin-bottom: 20px;
+}
+
+.campo label {
+  display: block;
+  font-size: 0.88rem;
+  font-weight: 600;
+  margin-bottom: 7px;
+  color: var(--negro-suave);
+}
+
+/* Estilos de inputs, selects y textareas */
+.campo input,
+.campo select,
+.campo textarea {
+  width: 100%;
+  padding: 12px 16px;
+  border: 2px solid #e0e0e0;
+  border-radius: var(--radio);
+  font-family: var(--fuente-texto);
+  font-size: 0.93rem;
+  color: var(--negro-suave);
+  background-color: var(--blanco);
+  outline: none;
+  transition: border-color 0.3s ease;
+}
+
+/* Borde rojo al hacer foco en el campo */
+.campo input:focus,
+.campo select:focus,
+.campo textarea:focus {
+  border-color: var(--rojo);
+}
+
+.campo textarea {
+  resize: vertical;
+  min-height: 100px;
+}
+
+/* Mensaje de error de validación (invisible por defecto) */
+.error-msg {
+  display: block;
+  color: var(--rojo);
+  font-size: 0.78rem;
+  margin-top: 5px;
+  min-height: 16px;
+}
+
+/* Clase que añade JS cuando un campo no supera la validación */
+.campo input.invalido,
+.campo select.invalido {
+  border-color: var(--rojo);
+  background-color: rgba(200, 16, 46, 0.04);
+}
+
+/* Botón del formulario (ancho completo) */
+.btn-formulario {
+  width: 100%;
+  margin-top: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+/* Mensaje de éxito: oculto por defecto */
+.exito-mensaje {
+  display: none;
+  text-align: center;
+  padding: 50px 20px;
+}
+
+.exito-mensaje.visible {
+  display: block;
+  animation: aparecer 0.5s ease;
+}
+
+.exito-mensaje i {
+  font-size: 4rem;
+  color: #28a745;
+  margin-bottom: 15px;
+}
+
+.exito-mensaje h3 {
+  font-family: var(--fuente-titulo);
+  font-size: 1.6rem;
+  margin-bottom: 10px;
+}
+
+.exito-mensaje p {
+  color: var(--gris-medio);
+}
+
+
+/* ============================================================
+   9. FOOTER
+   ============================================================ */
+.footer {
+  background-color: var(--negro);
+  color: rgba(255, 255, 255, 0.7);
+  padding: 70px 0 0;
+}
+
+/* Cuatro columnas en escritorio */
+.footer-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1fr;
+  gap: 40px;
+  padding-bottom: 50px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.logo-footer {
+  margin-bottom: 15px;
+  font-size: 1.1rem;
+}
+
+.footer-descripcion {
+  font-size: 0.88rem;
+  line-height: 1.8;
+  margin-bottom: 25px;
+}
+
+/* Iconos de redes sociales */
+.redes-sociales {
+  display: flex;
+  gap: 10px;
+}
+
+.red-social {
+  width: 38px;
+  height: 38px;
+  background-color: rgba(255, 255, 255, 0.1);
+  color: var(--blanco);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.9rem;
+  transition: var(--transicion);
+}
+
+.red-social:hover {
+  background-color: var(--rojo);
+  transform: translateY(-3px);
+}
+
+.footer-titulo {
+  color: var(--blanco);
+  font-size: 0.9rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  margin-bottom: 22px;
+}
+
+/* Lista de horarios */
+.horarios-lista {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.horarios-lista li {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.88rem;
+  padding-bottom: 10px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+}
+
+.horarios-lista .cerrado span:last-child {
+  color: var(--rojo);
+}
+
+/* Lista de contacto */
+.footer-contacto {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.footer-contacto li {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 0.88rem;
+}
+
+.footer-contacto i { color: var(--rojo); }
+
+/* Links de navegación rápida */
+.footer-links {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.footer-links a {
+  font-size: 0.88rem;
+  transition: var(--transicion);
+  padding-left: 15px;
+  position: relative;
+}
+
+.footer-links a::before {
+  content: '→';
+  position: absolute;
+  left: 0;
+  color: var(--rojo);
+  transition: var(--transicion);
+}
+
+.footer-links a:hover {
+  color: var(--blanco);
+  padding-left: 20px;
+}
+
+/* Barra inferior con copyright */
+.footer-bottom {
+  padding: 22px 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.82rem;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+
+/* ============================================================
+   10. ANIMACIONES
+   ============================================================ */
+
+/* Entrada desde arriba con fade: usada en el hero */
+@keyframes bajarFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-25px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Fade simple: usada en el mensaje de éxito */
+@keyframes aparecer {
+  from { opacity: 0; transform: scale(0.95); }
+  to   { opacity: 1; transform: scale(1); }
+}
+
+/* Rebote continuo: usada en la flecha del hero */
+@keyframes rebotar {
+  0%, 100% { transform: translateX(-50%) translateY(0); }
+  50%       { transform: translateX(-50%) translateY(10px); }
+}
+
+/* Clase base para el scroll reveal (añadida por JS a varios elementos) */
+.reveal {
+  opacity: 0;
+  transform: translateY(35px);
+  transition: opacity 0.65s ease, transform 0.65s ease;
+}
+
+/* Clase que añade JS cuando el elemento es visible en pantalla */
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+
+/* ============================================================
+   11. RESPONSIVE — MEDIA QUERIES
+   Adaptamos el diseño a distintos tamaños de pantalla
+   ============================================================ */
+
+/* ---- Tablet: hasta 1024px ---- */
+@media (max-width: 1024px) {
+
+  .footer-grid {
+    grid-template-columns: 1fr 1fr; /* 2 columnas en lugar de 4 */
+  }
+
+  /* Galería: 2 columnas en tablet */
+  .galeria-grid {
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(3, 220px);
+  }
+  .galeria-item:first-child { grid-row: span 1; }
+}
+
+/* ---- Móvil: hasta 768px ---- */
+@media (max-width: 768px) {
+
+  /* Mostrar el botón hamburguesa */
+  .hamburger { display: flex; }
+
+  /* Menú de navegación: panel lateral desde la derecha */
+  .nav-links {
+    position: fixed;
+    top: 0;
+    right: -100%; /* oculto fuera de la pantalla */
+    width: 280px;
+    height: 100vh;
+    background-color: var(--negro);
+    flex-direction: column;
+    justify-content: center;
+    gap: 28px;
+    padding: 40px;
+    transition: right 0.35s ease;
+    z-index: 999;
+  }
+
+  /* Clase activa: el panel entra desde la derecha */
+  .nav-links.abierto { right: 0; }
+
+  .nav-link { font-size: 1.1rem; }
+
+  /* Hero: desactivar parallax en móvil (no funciona bien en iOS) */
+  .hero { background-attachment: scroll; }
+
+  .hero-botones {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .btn {
+    width: 100%;
+    max-width: 280px;
+    text-align: center;
+  }
+
+  /* Servicios: 1 columna en móvil */
+  .servicios-grid { grid-template-columns: 1fr; }
+
+  /* Galería: 1 columna en móvil */
+  .galeria-grid {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto;
+  }
+  .galeria-item { height: 220px; }
+  .galeria-item:first-child { grid-row: span 1; }
+
+  /* Formulario: 1 columna en móvil */
+  .reserva-wrapper   { grid-template-columns: 1fr; gap: 40px; }
+  .campo-grupo       { grid-template-columns: 1fr; }
+  .reserva-formulario { padding: 25px; }
+
+  /* Footer: 1 columna en móvil */
+  .footer-grid {
+    grid-template-columns: 1fr;
+    gap: 30px;
+  }
+
+  .footer-bottom {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  /* Títulos más pequeños en móvil */
+  .seccion-titulo h2 { font-size: 1.9rem; }
+  .reserva-info h2   { font-size: 1.9rem; }
+}
+
+/* ---- Móvil pequeño: hasta 480px ---- */
+@media (max-width: 480px) {
+  .contenedor { padding: 0 15px; }
+
+  .servicios,
+  .galeria,
+  .reserva { padding: 70px 0; }
+}
